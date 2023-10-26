@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "logfile-parser"
+version = "0.1.0"
+description = "A log file parser using utilized by python generators."
+authors = ["AliHezarpisheh <AliHezarpisheh@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ruff = "^0.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
