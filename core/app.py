@@ -4,7 +4,7 @@ from config.log import setup_logging
 
 setup_logging()
 
-logger = logging.getLogger()
+logger = logging.getLogger("core")
 
 def main():
-    logger.critical("It works")
+    pass

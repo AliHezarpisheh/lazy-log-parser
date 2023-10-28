@@ -1,0 +1,19 @@
+version = 1
+disable_existing_logers = true
+
+[handlers.coreHandler]
+level = "DEBUG"
+class = "logging.handlers.RotatingFileHandler"
+filename = "logs/project.log"
+maxBytes = 1048576   # 1 MB
+backupCount = 10
+formatter = "coreFormatter"
+
+[formatters.coreFormatter]
+format = "%(levelname)s - %(asctime)s - %(module)s - %(process)d - %(thread)d - %(message)s"
+datefmt = "%Y-%m-%d %H:%M:%S"
+
+[loggers.core]
+level = "DEBUG"
+handlers = ["coreHandler",]
+propagate = false

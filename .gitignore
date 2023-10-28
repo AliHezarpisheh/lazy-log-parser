@@ -113,3 +113,5 @@ warehouse/tests/querysets/test_A.py
 cache/
 artifacts/
 logs/
+.ruff_cache
+.mypy_cache
