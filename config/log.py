@@ -18,7 +18,7 @@ for handler in handlers.values():
     handler_path = handler.get("filename", None)
     if handler_path:
         directory = DirLib(handler_path)
-        if not directory.is_exist():
+        if not directory.is_exists():
             directory.make()
 
 
