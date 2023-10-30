@@ -11,15 +11,14 @@ logger = logging.getLogger("core")
 
 class LogParser(FileMixins):
     """
-    A class for parsing log files and extracting lines based on specified log 
+    A class for parsing log files and extracting lines based on specified log
     levels.
     """
+
     valid_levels = ("DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL")
 
     def __init__(
-        self,
-        file_path: str="example.log",
-        log_level: str="ERROR"
+        self, file_path: str = "example.log", log_level: str = "ERROR"
     ) -> None:
         """
         Initializes LogParser instance with the provided file path and loglevel.
@@ -77,10 +76,7 @@ class LogParser(FileMixins):
                 attribute.
         """
         if value.upper() not in self.valid_levels:
-            msg = ErrorMessages.INVALID_LOG_LEVEL.format(
-                self.valid_levels,
-                value
-            )
+            msg = ErrorMessages.INVALID_LOG_LEVEL.format(self.valid_levels, value)
             logger.debug(msg)
             raise ValueError(msg)
 

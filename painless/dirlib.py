@@ -19,6 +19,7 @@ class DirLib(FileMixins):
             print("Directory does not exist. Creating it...")
             directory.make()
     """
+
     def __init__(self, path: Union[str, Path]) -> None:
         """Initialize DirLib object with a given path."""
         self._path = self.convert_to_path(path)
@@ -39,4 +40,6 @@ class DirLib(FileMixins):
 
     def make(self) -> None:
         """Create a new path (including nested paths)."""
-        self.path.parent.mkdir(parents=True,)
+        self.path.parent.mkdir(
+            parents=True,
+        )

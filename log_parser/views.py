@@ -10,6 +10,7 @@ logger = logging.getLogger("core")
 
 class LogParserView:
     """A class representing the user interface for the LogParser application."""
+
     def clear_screen(self) -> None:
         """Clears the terminal screen."""
         os.system("cls" if os.name == "md" else "clear")
@@ -36,7 +37,7 @@ class LogParserView:
 
         Returns:
             str: The validated log level entered by the user.
-        
+
         Raises:
             ValueError: If the entered log level is not valid.
         """
@@ -44,10 +45,7 @@ class LogParserView:
         valid_levels = LogParser.valid_levels
 
         if log_level.upper() not in valid_levels:
-            msg = ErrorMessages.INVALID_LOG_LEVEL.format(
-                valid_levels,
-                log_level
-            )
+            msg = ErrorMessages.INVALID_LOG_LEVEL.format(valid_levels, log_level)
             logger.debug(msg)
             raise ValueError(msg)
 
@@ -62,7 +60,7 @@ class LogParserView:
 
         Returns:
             str: The validated user action (`next` or `quit`).
-        
+
         Raises:
             ValueError: If the entered action is not valid.
         """
@@ -71,11 +69,5 @@ class LogParserView:
             self.clear_screen()
             return command
         else:
-            logger.info(ErrorMessages.INVALID_COMMAND_LOG.format(
-                command=command
-                )
-            )
-            raise ValueError(ErrorMessages.INVALID_COMMAND.format(
-                command=command
-                )
-            )
+            logger.info(ErrorMessages.INVALID_COMMAND_LOG.format(command=command))
+            raise ValueError(ErrorMessages.INVALID_COMMAND.format(command=command))
