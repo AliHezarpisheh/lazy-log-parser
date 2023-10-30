@@ -18,3 +18,41 @@ pylint = "^3.0.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "**/migrations/",
+    ".venv",
+    ".env",
+    "env",
+    "venv",
+    ".git",
+    ".gitignore",
+    ".vscode",
+    ".idea",
+]
+
+line-length = 88
+indent-width = 4
+
+[tool.ruff.extend-per-file-ignores]
+"__init__.py" = ["F401"]
