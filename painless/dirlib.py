@@ -1,8 +1,14 @@
+import logging
+
 from pathlib import Path
 from typing import Union
 
+from .mixins import FileMixins
 
-class DirLib:
+logger = logging.getLogger("core")
+
+
+class DirLib(FileMixins):
     """A class providing basic operations related to directories.
 
     Usage:
@@ -15,7 +21,7 @@ class DirLib:
     """
     def __init__(self, path: Union[str, Path]) -> None:
         """Initialize DirLib object with a given path."""
-        self._path = self._convert_to_path(path)
+        self._path = self.convert_to_path(path)
 
     @property
     def path(self) -> Path:
@@ -27,32 +33,9 @@ class DirLib:
         """
         return self._path
 
-    def _convert_to_path(self, path: Union[Path, str]) -> Path:
-        """
-        Convert the input path to a Path object.
-
-        Args:
-            path (Union[Path, str]): The input path.
-
-        Returns:
-            Path: The converted Path object.
-
-        Raises:
-            ValueError: If the input path is not a valid Path object or string.
-        """
-        if isinstance(path, Path):
-            return path
-        elif isinstance(path, str):
-            path = Path(path)
-            return path
-        else:
-            raise ValueError(
-                f"path should be Path `object` or `str`, got `{type(path)}`"
-            )
-
-    def is_exist(self) -> bool:
-        """Check if a given path exists."""
-        return self.path.exists()
+    def is_exists(self) -> bool:
+        """Check if a given path exists using the is_path_exists method."""
+        return super().is_path_exists(self.path)
 
     def make(self) -> None:
         """Create a new path (including nested paths)."""
