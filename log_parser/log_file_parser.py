@@ -18,7 +18,7 @@ class LogParser(FileMixins):
     valid_levels = ("DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL")
 
     def __init__(
-        self, file_path: str = "example.log", log_level: str = "ERROR"
+        self, file_path: Path, log_level: str = "ERROR"
     ) -> None:
         """
         Initializes LogParser instance with the provided file path and loglevel.
