@@ -6,6 +6,22 @@ logger = logging.getLogger("core")
 
 
 class FileMixins:
+    """
+    A utility class providing methods for working with file paths.
+
+    This class contains static methods to handle file paths, including converting
+    paths to `Path` objects and checking if a given path exists.
+
+    Example Usage:
+    ```
+    # Example usage of FileMixins class
+    path = FileMixins.convert_to_path("/path/to/file.txt")
+    if FileMixins.is_path_exists(path):
+        print("File exists.")
+    else:
+        print("File does not exist.")
+    ```
+    """
     @staticmethod
     def convert_to_path(path: Union[Path, str]) -> Path:
         """
@@ -21,14 +37,16 @@ class FileMixins:
             ValueError: If the input path is not a valid Path object or string.
         """
         if isinstance(path, Path):
-            return path
+            result = path
         elif isinstance(path, str):
             path = Path(path)
-            return path
+            result = path
         else:
             msg = f"path should be Path `object` or `str`, got `{type(path)}`"
             logger.debug(msg)
             raise ValueError(msg)
+
+        return result
 
     @staticmethod
     def is_path_exists(path: Path) -> bool:

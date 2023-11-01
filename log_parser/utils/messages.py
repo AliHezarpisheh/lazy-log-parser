@@ -4,7 +4,7 @@ from enum import StrEnum
 class ErrorMessages(StrEnum):
     """Enumeration of error messages used in the LogParser application."""
 
-    INVALID_LOG_LEVEL = "Valid log levels are: {levels}, but got `{value}`"
+    INVALID_LOG_LEVEL = "Valid log levels are: {valid_levels}, but got `{value}`"
     WRONG_PATH = "The given path is wrong. Please provide a valid file path."
     WRONG_PATH_LOG = "Valid path sent by the user: `{path}`"
     NO_PERMISSION = "You do not have the permission to read this file!"

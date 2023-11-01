@@ -2,7 +2,6 @@ import os
 import logging
 
 from .log_file_parser import LogParser
-from .utils.type_hints import LogLevel
 from .utils.messages import ViewMessages, ErrorMessages
 
 logger = logging.getLogger("core")
@@ -30,7 +29,7 @@ class LogParserView:
         self.show_divider()
         return file_path
 
-    def get_log_level(self) -> LogLevel:
+    def get_log_level(self) -> str:
         """
         Prompts the user to enter the log level for filtering. Validates the
         input against the valid log levels and returns the validated log level.
@@ -68,6 +67,6 @@ class LogParserView:
         if command.lower() in ("next", "quit"):
             self.clear_screen()
             return command
-        else:
-            logger.info(ErrorMessages.INVALID_COMMAND_LOG.format(command=command))
-            raise ValueError(ErrorMessages.INVALID_COMMAND.format(command=command))
+
+        logger.info(ErrorMessages.INVALID_COMMAND_LOG.format(command=command))
+        raise ValueError(ErrorMessages.INVALID_COMMAND.format(command=command))

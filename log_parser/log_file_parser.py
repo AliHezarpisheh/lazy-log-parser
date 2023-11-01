@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Generator
 
 from painless.mixins import FileMixins
-from .utils.type_hints import LogLevel
 from .utils.messages import ErrorMessages
 
 logger = logging.getLogger("core")
@@ -16,20 +15,6 @@ class LogParser(FileMixins):
     """
 
     valid_levels = ("DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL")
-
-    def __init__(
-        self, file_path: Path, log_level: str = "ERROR"
-    ) -> None:
-        """
-        Initializes LogParser instance with the provided file path and loglevel.
-
-        Args:
-            file_path (str): The path to the log file. Defaults to "example.log"
-            log_level (str, optional): The desired log level for filtering log
-                lines. Defaults to "ERROR".
-        """
-        self.file_path = file_path
-        self.log_level = log_level
 
     @property
     def file_path(self) -> Path:
@@ -53,7 +38,7 @@ class LogParser(FileMixins):
         self._file_path = self.convert_to_path(path=value)
 
     @property
-    def log_level(self) -> LogLevel:
+    def log_level(self) -> str:
         """
         The property for the log level.
 
@@ -90,11 +75,11 @@ class LogParser(FileMixins):
             str: Log lines matching the specified log level.
         """
         try:
-            # Check that is the log file is opened before and saved or not. This
+            # Check that is the log file is opened before and is it saved or not. This
             # is for preventing the file to be reopened every time the next() is
             # called on the generator.
             if not hasattr(self, "_log_file"):
-                self._log_file = self.file_path.open(mode="r")
+                self._log_file = self.file_path.open(mode="r", encoding="utf-8")
 
             for line in self._log_file:
                 if self.log_level in line:
