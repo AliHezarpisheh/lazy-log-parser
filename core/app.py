@@ -1,10 +1,8 @@
 import logging
 
-from config.log import setup_logging
 from log_parser import LogParserView
 from log_parser import LogParser
 
-setup_logging()
 logger = logging.getLogger("core")
 
 parser = LogParser()
@@ -21,10 +19,6 @@ def main() -> None:
     4. Parses the log file lazily and prints the first line.
     5. Enters a loop, allowing the user to request the next log line or quit the
         application.
-
-    Note:
-        Ensure that 'setup_logging' function is appropriately configured in
-            'config.log'.
     """
     view.clear_screen()
 
