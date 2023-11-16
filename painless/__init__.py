@@ -1,1 +1,1 @@
-from .dirlib import DirLib
+from .path_manager import PathManager

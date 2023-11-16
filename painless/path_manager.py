@@ -8,7 +8,7 @@ from .mixins import FileMixins
 logger = logging.getLogger("core")
 
 
-class DirLib(FileMixins):
+class PathManager(FileMixins):
     """A class providing basic operations related to directories.
 
     Usage:
@@ -34,12 +34,13 @@ class DirLib(FileMixins):
         """
         return self._path
 
-    def is_exists(self) -> bool:
+    def is_exist(self) -> bool:
         """Check if a given path exists using the is_path_exists method."""
-        return super().is_path_exists(self.path)
+        return super().is_exist(self.path)
 
     def make(self) -> None:
         """Create a new path (including nested paths)."""
         self.path.parent.mkdir(
             parents=True,
+            exist_ok=True,
         )

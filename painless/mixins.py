@@ -16,12 +16,13 @@ class FileMixins:
     ```
     # Example usage of FileMixins class
     path = FileMixins.convert_to_path("/path/to/file.txt")
-    if FileMixins.is_path_exists(path):
+    if FileMixins.is_exists(path):
         print("File exists.")
     else:
         print("File does not exist.")
     ```
     """
+
     @staticmethod
     def convert_to_path(path: Union[Path, str]) -> Path:
         """
@@ -49,7 +50,7 @@ class FileMixins:
         return result
 
     @staticmethod
-    def is_path_exists(path: Path) -> bool:
+    def is_exist(path: Path) -> bool:
         """Check if a given path exists."""
         if not isinstance(path, Path):
             msg = f"path should be a Path object, but got `{type(path)}`"
