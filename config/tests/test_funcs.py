@@ -96,7 +96,7 @@ def test_read_valid_toml_file(valid_temp_toml_file_path: Path) -> None:
 
 
 def test_read_invalid_toml_file(invalid_temp_toml_file_path: Path) -> None:
-    """ "
+    """
     Test case for checking if the read_toml function correctly handles the case where
     the specified TOML file has a syntax error.
     """
