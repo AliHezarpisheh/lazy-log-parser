@@ -44,7 +44,9 @@ class LogParserView:
         valid_levels = LogParser.valid_levels
 
         if log_level.upper() not in valid_levels:
-            msg = ErrorMessages.INVALID_LOG_LEVEL.format(valid_levels, log_level)
+            msg = ErrorMessages.INVALID_LOG_LEVEL.format(
+                valid_levels=self.valid_levels, value=value
+            )
             logger.debug(msg)
             raise ValueError(msg)
 

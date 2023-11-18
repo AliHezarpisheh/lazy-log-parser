@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from unittest.mock import mock_open, patch
 from typing import Generator
 
 from painless.mixins import FileMixins
@@ -36,6 +37,7 @@ class LogParser(FileMixins):
             value (str): The new file_path.
         """
         self._file_path = self.convert_to_path(path=value)
+        logger.debug(f"User provided file path for logging: {value}")
 
     @property
     def log_level(self) -> str:
@@ -61,11 +63,14 @@ class LogParser(FileMixins):
                 attribute.
         """
         if value.upper() not in self.valid_levels:
-            msg = ErrorMessages.INVALID_LOG_LEVEL.format(self.valid_levels, value)
+            msg = ErrorMessages.INVALID_LOG_LEVEL.format(
+                valid_levels=self.valid_levels, value=value
+            )
             logger.debug(msg)
             raise ValueError(msg)
 
         self._log_level = value.upper()
+        logger.debug(f"User set the log level to: {self._log_level}")
 
     def parse(self) -> Generator:
         """
@@ -83,6 +88,7 @@ class LogParser(FileMixins):
 
             for line in self._log_file:
                 if self.log_level in line:
+                    logger.debug("User goes to next line of the log file.")
                     yield line
         except FileNotFoundError:
             print(ErrorMessages.WRONG_PATH)
@@ -90,3 +96,6 @@ class LogParser(FileMixins):
         except PermissionError:
             print(ErrorMessages.NO_PERMISSION)
             logger.info(ErrorMessages.NO_PERMISSION_LOG.format(self.file_path))
+        finally:
+            if hasattr(self, "_log_file"):
+                self._log_file.close()
