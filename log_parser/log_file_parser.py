@@ -1,6 +1,5 @@
 import logging
 from pathlib import Path
-from unittest.mock import mock_open, patch
 from typing import Generator
 
 from painless.mixins import FileMixins
@@ -92,10 +91,9 @@ class LogParser(FileMixins):
                     yield line
         except FileNotFoundError:
             print(ErrorMessages.WRONG_PATH)
-            logger.info(ErrorMessages.WRONG_PATH_LOG.format(self.file_path))
+            logger.info(ErrorMessages.WRONG_PATH_LOG.format(path=self.file_path))
         except PermissionError:
             print(ErrorMessages.NO_PERMISSION)
-            logger.info(ErrorMessages.NO_PERMISSION_LOG.format(self.file_path))
-        finally:
-            if hasattr(self, "_log_file"):
-                self._log_file.close()
+            logger.info(ErrorMessages.NO_PERMISSION_LOG.format(path=self.file_path))
+        else:
+            self._log_file.close()
