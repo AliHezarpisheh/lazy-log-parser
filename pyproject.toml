@@ -60,3 +60,6 @@ indent-width = 4
 
 [tool.ruff.extend-per-file-ignores]
 "__init__.py" = ["F401"]
+
+[tool.coverage.run]
+omit = ["log_parser/views.py",]

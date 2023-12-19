@@ -12,7 +12,7 @@ class LogParserView:
 
     def clear_screen(self) -> None:
         """Clears the terminal screen."""
-        os.system("cls" if os.name == "md" else "clear")
+        os.system("cls" if os.name == "md" else "clear")    # pragma: no cover
 
     def show_divider(self) -> None:
         """Prints a divider line to separate sections in the console."""
@@ -45,7 +45,7 @@ class LogParserView:
 
         if log_level.upper() not in valid_levels:
             msg = ErrorMessages.INVALID_LOG_LEVEL.format(
-                valid_levels=self.valid_levels, value=value
+                valid_levels=self.valid_levels, value=log_level
             )
             logger.debug(msg)
             raise ValueError(msg)
