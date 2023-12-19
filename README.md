@@ -23,7 +23,7 @@ Welcome to Log Parser, a Python-based command-line tool designed for efficient p
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/AliHezarpisheh/log-parser.git
-   cd log-parser
+   cd lazy_log_parser
    ```
 
 2. **Install Dependencies:**
