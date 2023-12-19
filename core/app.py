@@ -1,3 +1,4 @@
+import sys
 import logging
 
 from log_parser import LogParserView
@@ -36,7 +37,11 @@ def main() -> None:
         command = view.action()
 
         if command.lower() == "next":
-            line = next(lazy_file)
-            print(line)
+            try:
+                line = next(lazy_file)
+                print(line)
+            except StopIteration:
+                print("You have reached the end of the log file!")
+                sys.exit()
         elif command.lower() == "quit":
             break
